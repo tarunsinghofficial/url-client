@@ -109,7 +109,7 @@ export default function Home() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2 cursor-pointer">
-                        <CopyToClipboard onCopy={() => toast.success('URL copied to clipboard')} text={`https://shortenmy-url.vercel.app/api/${url.shortId}`}>
+                        <CopyToClipboard onCopy={() => toast.success('URL copied to clipboard')} text={`https://url-server-qa8x.onrender.com/api/${url.shortId}`}>
                           <MdContentCopy className='text-md text-black dark:text-white' />
                         </CopyToClipboard>
                         <p className="hover:underline hover:cursor-pointer text-blue-700">
