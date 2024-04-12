@@ -31,7 +31,6 @@ export default function Home() {
     }
 
     if (!fullUrl.trim()) {
-      // Display toast message if input is empty
       toast.warning("Please enter a URL");
       return;
     }
@@ -73,9 +72,8 @@ export default function Home() {
         <p className="text-md md:text-lg lg:text-xl dark:text-white text-gray-800 text-center">Fast and simple website to create a Shortened URL, easy to remember and share.</p>
       </div>
       <div className="flex flex-col md:flex-row lg:flex-row gap-5 items-center justify-center dark:bg-[#191C1F] dark:border-2 border-[#1E293B] bg-white shadow-2xl w-[90%] md:w-[50em] lg:w-[70em] h-auto rounded-lg px-8 py-16">
-        <Input value={fullUrl} onChange={(e) => setFullUrl(e.target.value)} type="text" placeholder="http://www.shortenmyurl.com" className="w-[20em] md:w-[30em] lg:w-[50em] dark:bg-[#3D4043]" />
+        <Input value={fullUrl} onChange={(e) => setFullUrl(e.target.value)} type="text" placeholder="Please enter a long url here to shorten" className="w-[20em] md:w-[30em] lg:w-[50em] dark:bg-[#3D4043]" />
         
-        {/* add auth here too */}
         <Button onClick={handleSubmit}>Shorten</Button>
 
       </div>
