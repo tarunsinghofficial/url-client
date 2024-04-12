@@ -15,6 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
 import { useEmail } from '@/context/EmailContext';
 import { useAuth } from '@/context/AuthContext';
+import { MdContentCopy } from "react-icons/md";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 export default function Home() {
   const [fullUrl, setFullUrl] = useState("");
@@ -73,7 +76,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col md:flex-row lg:flex-row gap-5 items-center justify-center dark:bg-[#191C1F] dark:border-2 border-[#1E293B] bg-white shadow-2xl w-[90%] md:w-[50em] lg:w-[70em] h-auto rounded-lg px-8 py-16">
         <Input value={fullUrl} onChange={(e) => setFullUrl(e.target.value)} type="text" placeholder="Please enter a long url here to shorten" className="w-[20em] md:w-[30em] lg:w-[50em] dark:bg-[#3D4043]" />
-        
+
         <Button onClick={handleSubmit}>Shorten</Button>
 
       </div>
@@ -102,16 +105,17 @@ export default function Home() {
                         className="hover:underline hover:cursor-pointer"
                       >{url.redirectURL}
 
-                      </a></TableCell>
-                    <TableCell>
-                      <a
-                        href={`https://url-server-qa8x.onrender.com/api/${url.shortId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline hover:cursor-pointer text-blue-700"
-                      >
-                        shrtn.me/{url.shortId}
                       </a>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <CopyToClipboard onCopy={() => toast.success('URL copied to clipboard')} text={`https://shortenmy-url.vercel.app/api/${url.shortId}`}>
+                          <MdContentCopy className='text-md text-black dark:text-white' />
+                        </CopyToClipboard>
+                        <p className="hover:underline hover:cursor-pointer text-blue-700">
+                          {url.shortId}
+                        </p>
+                      </div>
                     </TableCell>
                     <TableCell>{url.totalClicks.length}</TableCell>
                   </TableRow>
@@ -120,8 +124,9 @@ export default function Home() {
             </Table>
           </div>
         </div>
-      ) : (<div></div>)}
+      ) : (<div></div>)
+      }
       <ToastContainer />
-    </main>
+    </main >
   );
 }
